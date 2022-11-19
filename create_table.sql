@@ -84,7 +84,6 @@ create table Produit(
 	idProduit VARCHAR(30) NOT NULL, 
 	nomproduit VARCHAR(30) NOT NULL,
 	denominatin VARCHAR(30),
-	gamme_produit VARCHAR(30) NOT NULL,
 	prix REAL NOT NULL,
 	poidsTotal REAL,
 	volume REAL,
@@ -92,30 +91,13 @@ create table Produit(
 	largeur REAL,
 	hauteur REAL,
 	constraint pk_produit primary key(id),
-	CONSTRAINT chk_Produit_Gamme CHECK gamme_produit IN ('medicaments', 'dispositif medicaux'));
+);
 
-create table Prestataire(
-	id_prestataire int
-	K_bis BOOLEAN,
-	nom VARCHAR(30) NOT NULL,
-	localisation VARCHAR(30),
-	type_prestataire VARCHAR(30) NOT NULL,
-	fonction VARCHAR(30) NOT NULL,
-	type VARCHAR(30),
-	nomResponsableVARCHAR(30),
-	telephone VARCHAR(30) NOT NULL,
-	email VARCHAR(30),
-	prix REAL,
-	constraint pk_prestataire primary key(id_prestataire));
+CREATE TABLE Type_Produit(
+	id_type INT,
+	type_produit VARCHAR(50)
+);
 
-create table Time_(
-	id_time int,
-	time_ time,
-	time_description VARCHAR(30),
-	seconde int,
-	minute int,
-	heure int
-	constraint pk_time_ primary key(id_time));
 
 create table Lieu(
 	id_lieu int,
@@ -157,15 +139,26 @@ create table Entrepot(
 	largeur REAL,
 	perimetre REAL,
 	surface REAL,
-	type_produit VARCHAR(30),
 	adresse VARCHAR(250),
 	materiel VARCHAR(250),
 	constraint pk_entrepot primary key(id_entrepot));
 
+CREATE TABLE Conditionnement(
+	id_conditiennement INT,
+	temperature REAL,
+	humidite REAL,
+	pression REAL,
+	validite REAL,
+	type_cond VARCHAR(30),
+	UVC VARCHAR(30),
+	visibilite VARCHAR(30),
+	emballage VARCHAR(30),
+	CONSTRAINT pk_conditionnement PRIMARY KEY(id_conditionnement)
+);
+
 create table Production(
 	id_produit int,
-	id_prestataire int,
-	id_time int,
+	id_type int,
 	date_debut int,
 	date_fin int,
 	lieu_depart int,
@@ -174,8 +167,7 @@ create table Production(
 	cout_fabrication REAL,
 	quantite int,
 	constraint fk_production_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
-	constraint fk_production_Prestataire FOREIGN KEY (id_prestataire) REFERENCES Prestataire(id_prestataire),
-	constraint fk_production_time FOREIGN KEY (id_time) REFERENCES Time_(id_time),
+	constraint fk_production_Prestataire FOREIGN KEY (id_type) REFERENCES Type_Produit (id_type),
 	constraint fk_production_date1 FOREIGN KEY (date_debut) REFERENCES Date_(id_date),
 	constraint fk_production_date2 FOREIGN KEY (date_fin) REFERENCES Date_(id_date),
 	constraint fk_production_lieu1 FOREIGN KEY (lieu_depart) REFERENCES Lieu(id_lieu),
@@ -185,8 +177,11 @@ create table Stock(
 	id_produit int,
 	id_entrepot int,
 	id_date int,
+	id_conditionnement int,
 	quantite int,
 	quantite_sortie int,
 	constraint fk_Stock_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
-	constraint fk_Stock_Entrepot FOREIGN KEY (id_produit) REFERENCES Produit(id),
-	constraint fk_Stock_Date FOREIGN KEY (id_date) REFERENCES Date_(id_date));
+	constraint fk_Stock_Entrepot FOREIGN KEY (id_entrepot) REFERENCES Entrepot(id_entrepot),
+	constraint fk_Stock_Date FOREIGN KEY (id_date) REFERENCES Date_(id_date),
+	constraint fk_Stock_Conditionnement FOREIGN KEY (id_conditiennement) REFERENCES Conditionnement(id_conditiennement)
+	);
