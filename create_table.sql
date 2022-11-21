@@ -125,7 +125,8 @@ CREATE TABLE Produit(
 
 CREATE TABLE Type_Produit(
 	id_type INT,
-	type_produit VARCHAR(50)
+	type_produit VARCHAR(50),
+	CONSTRAINT pk_type_produit PRIMARY KEY(id_type)
 );
 
 
@@ -172,9 +173,9 @@ CREATE TABLE Forme_produits(
 
 CREATE TABLE Application_produit(
 	id_application INT,
-	application_p VARCHAR(200),
-	description_app VARCHAR(400),
-	procede VARCHAR(500),
+	application_p VARCHAR2(200),
+	description_app VARCHAR2(400),
+	procede VARCHAR2(500),
 	age_recommende VARCHAR(50),
 	CONSTRAINT pk_application_produit PRIMARY KEY(id_application)
 );
