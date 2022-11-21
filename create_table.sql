@@ -1,4 +1,4 @@
-/* BEGIN
+BEGIN
 EXECUTE IMMEDIATE 'DROP TABLE Produit';
 EXCEPTION
 	WHEN OTHERS THEN
@@ -106,7 +106,7 @@ EXCEPTION
 		RAISE;
 		END IF;
 	END;
-/ */
+/
 
 
 CREATE TABLE Produit(
@@ -120,7 +120,7 @@ CREATE TABLE Produit(
 	longueur REAL,
 	largeur REAL,
 	hauteur REAL,
-	constraint pk_produit primary key(id),
+	constraint pk_produit primary key(id)
 );
 
 CREATE TABLE Type_Produit(
