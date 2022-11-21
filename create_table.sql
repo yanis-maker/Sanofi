@@ -109,11 +109,11 @@ EXCEPTION
 /
 
 
-create table Produit(
+CREATE TABLE Produit(
 	id int,
-	idProduit VARCHAR(30) NOT NULL, 
-	nomproduit VARCHAR(30) NOT NULL,
-	denominatin VARCHAR(30),
+	idProduit VARCHAR2(30) NOT NULL, 
+	nomproduit VARCHAR2(30) NOT NULL,
+	denominatin VARCHAR2(30),
 	prix REAL NOT NULL,
 	poidsTotal REAL,
 	volume REAL,
