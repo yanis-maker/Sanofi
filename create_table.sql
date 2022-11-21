@@ -170,7 +170,7 @@ CREATE TABLE Forme_produit(
 	poids FLOAT,
 	volume FLOAT,
 	couleur VARCHAR(50),
-	CONSTRAINT pk_forme_produit PRIMARY KEY(id_forme_produit)
+	CONSTRAINT pk_forme PRIMARY KEY(id_forme_produit)
 	);
 
 CREATE TABLE Application_produit(
