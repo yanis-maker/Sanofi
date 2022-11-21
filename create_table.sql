@@ -113,15 +113,15 @@ EXCEPTION
 
 CREATE TABLE Produit(
 	id int,
-	idProduit VARCHAR2(30) NOT NULL, 
-	nomproduit VARCHAR2(30) NOT NULL,
-	denominatin VARCHAR2(30),
-	prix REAL NOT NULL,
-	poidsTotal REAL,
-	volume REAL,
-	longueur REAL,
-	largeur REAL,
-	hauteur REAL,
+	idProduit VARCHAR2(50) NOT NULL, 
+	nomproduit VARCHAR2(50) NOT NULL,
+	denominatin VARCHAR2(50),
+	prix VARCHAR(50) NOT NULL,
+	poidsTotal INT,
+	volume DECIMAL(4,2),
+	longueur DECIMAL(4,2),
+	largeur DECIMAL(4,2),
+	hauteur DECIMAL(4,2),
 	constraint pk_produit primary key(id)
 );
 
@@ -135,13 +135,11 @@ CREATE TABLE Type_Produit(
 create table Lieu(
 	id_lieu int,
 	nom_lieu VARCHAR(30),
-	type_lieu VARCHAR(30),
-	numero_voie int,
-	type_voie VARCHAR(30),
+	numero_voie VARCHAR(30),
 	nom_voie VARCHAR(30),
 	complement_adresse VARCHAR(30),
-	adresse_complet VARCHAR(30),
-	codePostal int,
+	adresse_complete VARCHAR(30),
+	codePostal VARCHAR(30),
 	departement VARCHAR(30),
 	region VARCHAR(30),
 	ville VARCHAR(30),
