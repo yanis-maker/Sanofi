@@ -125,15 +125,14 @@ create table Produit(
 
 CREATE TABLE Type_Produit(
 	id_type INT,
-	type_produit VARCHAR(50),
-
+	type_produit VARCHAR(50)
 );
 
 
 create table Lieu(
 	id_lieu int,
-	nom_lieu VARCHAR(30)
-	type_lieu VARCHAR(30)
+	nom_lieu VARCHAR(30),
+	type_lieu VARCHAR(30),
 	numero_voie int,
 	type_voie VARCHAR(30),
 	nom_voie VARCHAR(30),
@@ -168,7 +167,6 @@ CREATE Forme_produits(
 	poids FLOAT,
 	volume FLOAT,
 	couleur VARCHAR(50),
-	
 	CONSTRAINT pk_forme_produit PRIMARY KEY(id_forme_produit)
 	);
 
@@ -194,7 +192,7 @@ create table Entrepot(
 	constraint pk_entrepot primary key(id_entrepot));
 
 CREATE TABLE Conditionnement(
-	id_conditiennement INT,
+	id_conditionnement INT,
 	temperature REAL,
 	humidite REAL,
 	pression REAL,
@@ -211,7 +209,7 @@ CREATE TABLE Type_stocks(
 	type_stock VARCHAR(50),
 	enjeux VARCHAR(500),
 	objectif VARCHAR(500),
-	CONSTRAINT pk_type_stock PRIMARY KEY(id_type_cond)
+	CONSTRAINT pk_type_stock PRIMARY KEY(id_type_stock)
 );
 
 create table Production(
@@ -246,6 +244,6 @@ create table Stock(
 	constraint fk_Stock_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
 	constraint fk_Stock_Entrepot FOREIGN KEY (id_entrepot) REFERENCES Entrepot(id_entrepot),
 	constraint fk_Stock_Date FOREIGN KEY (id_date) REFERENCES Date_(id_date),
-	constraint fk_Stock_Conditionnement FOREIGN KEY (id_conditiennement) REFERENCES Conditionnement(id_conditiennement),
+	constraint fk_Stock_Conditionnement FOREIGN KEY (id_conditionnement) REFERENCES Conditionnement(id_conditionnement),
 	constraint fk_Stock_type FOREIGN KEY(id_type_stock) REFERENCES Type_stocks(id_type_stock)
 	);
