@@ -164,7 +164,7 @@ create table Dates(
 	annee int,
 	constraint pk_dates primary key(id_date));
 
-CREATE TABLE Forme_produits(
+CREATE TABLE Forme_produit(
 	id_forme_produit int,
 	forme VARCHAR(50),
 	poids FLOAT,
@@ -229,7 +229,7 @@ create table Production(
 	quantite int,
 	constraint fk_production_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
 	constraint fk_production_Type FOREIGN KEY (id_type) REFERENCES Type_Produit (id_type),
-	constraint fk_production_forme FOREIGN KEY (id_forme_produit) REFERENCES Forme_produits(id_forme_produit),
+	constraint fk_production_forme FOREIGN KEY (id_forme_produit) REFERENCES Forme_produit(id_forme_produit),
 	constraint fk_production_application FOREIGN KEY(id_application) REFERENCES Application_produit(id_application),
 	constraint fk_production_date1 FOREIGN KEY (date_debut) REFERENCES Dates(id_date),
 	constraint fk_production_date2 FOREIGN KEY (date_fin) REFERENCES Dates(id_date),
