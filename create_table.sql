@@ -161,7 +161,7 @@ create table Dates(
 	annee int,
 	constraint pk_dates primary key(id_date));
 
-CREATE Forme_produits(
+CREATE TABLE Forme_produits(
 	id_forme_produit int,
 	forme VARCHAR(50),
 	poids FLOAT,
@@ -170,7 +170,7 @@ CREATE Forme_produits(
 	CONSTRAINT pk_forme_produit PRIMARY KEY(id_forme_produit)
 	);
 
-CREATE Application_produit(
+CREATE TABLE Application_produit(
 	id_application INT,
 	application_p VARCHAR(200),
 	description_app VARCHAR(400),
@@ -225,7 +225,7 @@ create table Production(
 	cout_fabrication REAL,
 	quantite int,
 	constraint fk_production_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
-	constraint fk_production_Prestataire FOREIGN KEY (id_type) REFERENCES Type_Produit (id_type),
+	constraint fk_production_Type FOREIGN KEY (id_type) REFERENCES Type_Produit (id_type),
 	constraint fk_production_forme FOREIGN KEY (id_forme_produit) REFERENCES Forme_produits(id_forme_produit),
 	constraint fk_production_application FOREIGN KEY(id_application) REFERENCES Application_produit(id_application),
 	constraint fk_production_date1 FOREIGN KEY (date_debut) REFERENCES Dates(id_date),
@@ -243,7 +243,7 @@ create table Stock(
 	quantite_sortie int,
 	constraint fk_Stock_Produit FOREIGN KEY (id_produit) REFERENCES Produit(id),
 	constraint fk_Stock_Entrepot FOREIGN KEY (id_entrepot) REFERENCES Entrepot(id_entrepot),
-	constraint fk_Stock_Date FOREIGN KEY (id_date) REFERENCES Date_(id_date),
+	constraint fk_Stock_Date FOREIGN KEY (id_date) REFERENCES Dates(id_date),
 	constraint fk_Stock_Conditionnement FOREIGN KEY (id_conditionnement) REFERENCES Conditionnement(id_conditionnement),
 	constraint fk_Stock_type FOREIGN KEY(id_type_stock) REFERENCES Type_stocks(id_type_stock)
 	);
